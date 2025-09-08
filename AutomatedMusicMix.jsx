@@ -1,9 +1,3 @@
-
-// https://ppro-scripting.docsforadobe.dev/
-//TODO:
-// Intro transition is being overwritten by between-track transitions as it seems to replace cross dissolve at beginning and end of each track item each iteration.
-
-
 function createMusicMixVideoTimeline() {
 
     // --- 1. Configuration & Setup ---
@@ -329,32 +323,7 @@ function createMusicMixVideoTimeline() {
 			return File.openDialog("Choose MoGRT", // title
 				filterString, // filter available files? 
 				false); // allow multiple?
-			if (mogrtToImport) {
-				var targetTime = sequence.getPlayerPosition();
-				var vidTrackOffset = 0;
-				var audTrackOffset = 0;
-				var newTrackItem = activeSeq.importMGT(mogrtToImport.fsName,
-					targetTime.ticks,
-					vidTrackOffset,
-					audTrackOffset);
-				if (newTrackItem) {
-					var moComp = newTrackItem.getMGTComponent();
-					if (moComp) {
-						var params = moComp.properties;
-						for (var z = 0; z < params.numItems; z++) {
-							var thisParam = params[0];
-						}
-						var srcTextParam = params.getParamForDisplayName("Main Title");
-						if (srcTextParam) {
-							var val = srcTextParam.getValue();
-							srcTextParam.setValue("New value set by PProPanel!");
-						}
-					}
-				}
-                return 
-			}
-		} else {
-		}
+        }
 	}
 
 

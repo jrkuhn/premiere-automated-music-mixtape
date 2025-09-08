@@ -249,12 +249,9 @@ The script includes two powerful helper functions that you could potentially ada
     // addClipTransition(myAudioClip, "Constant Power", new Time(0.5), false);
     ```
 
-### `createEssentialGraphicsTitle(mogrtPath, textContent)`
+### `importMGRT()`
 
-*   **Purpose:** This function creates a new `ProjectItem` in your Premiere Pro project from a `.mogrt` file and attempts to set its "Source Text" property.
-*   **Parameters:**
-    *   `mogrtPath`: The absolute file path to your `.mogrt` template.
-    *   `textContent`: The string of text you want to appear in the title (e.g., "Artist - Song").
+*   **Purpose:** This function creates a new `ProjectItem` in your Premiere Pro project from a `.mogrt` file dialog window
 *   **Returns:** A `ProjectItem` object representing the new Essential Graphics title, or `null` if creation fails.
 *   **Internal Working:** It uses Premiere Pro's Quality Editor (`qe.project.newItemFromTemplate()`) to instantiate the `.mogrt` and then searches for a "Source Text" property to populate it.
 *   **Important:** This relies on `app.enableQE()` being called at the start of the script and `app.disableQE()` at the end.
@@ -279,5 +276,7 @@ The script includes two powerful helper functions that you could potentially ada
     *   Make sure `app.enableQE();` is at the beginning and `app.disableQE();` is at the end of your script's execution block.
 
 ## 9. Contribution & Support
+
+*   Reference: https://ppro-scripting.docsforadobe.dev/
 
 This script is provided as a powerful automation tool. If you have suggestions for improvements, find bugs, or want to extend its functionality, feel free to modify the `.jsx` file! While direct support isn't provided, the community resources for ExtendScript development are vast.

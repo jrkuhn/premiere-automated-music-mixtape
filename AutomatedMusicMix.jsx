@@ -88,7 +88,7 @@ function createMusicMixVideoTimeline() {
         var scaleX = posWidth / seqWidth;
         var scaleY = posHeight / seqHeight;
 
-        $.writeln("Coord scaleX: " + scaleX.toFixed(3) + "scaleY: " + scaleY.toFixed(3));
+        //$.writeln("Coord scaleX: " + scaleX.toFixed(3) + "scaleY: " + scaleY.toFixed(3));
         return [scaleX, scaleY];
     }
 
@@ -185,12 +185,14 @@ function createMusicMixVideoTimeline() {
         for (var p = 0; p < component.properties.numItems; p++) {
             var prop = component.properties[p];
             if (prop && prop.displayName === targetPropName) {
-                prop.setValue(newValue);
-                return true;
-            }
+                try {
+                    prop.setValue(newValue);
+                    return true;
+                } catch (e) {
+                    $.writeln("Property '" + targetPropName + "' not found or not editable in '" + component.displayName + "': " + e.message);
+                }
+            }       
         }
-
-        $.writeln("Property '" + targetPropName + "' not found or not editable in '" + component.displayName + "'.");
         return false;
     }
 
@@ -655,10 +657,10 @@ function createMusicMixVideoTimeline() {
             if (correspondingThumbnail) {
                 try {
                     videoTrack3.insertClip(correspondingThumbnail, insertPointForTextThumb.ticks);
-                    $.writeln(importedThumbnails[j].name);
+                    //$.writeln(importedThumbnails[j].name);
                     var thumbnailClip = getVideoClipByName(importedThumbnails[j].name);
                     if (thumbnailClip) {
-                        $.writeln("audio duration: " + audioDuration.seconds);
+                        //$.writeln("audio duration: " + audioDuration.seconds);
                         var thumbnailClipEnd = new Time();
                         thumbnailClipEnd.seconds = currentTextThumbnailTimeSeconds + audioDuration.seconds;
                         thumbnailClip.end = thumbnailClipEnd;
@@ -671,7 +673,7 @@ function createMusicMixVideoTimeline() {
                             switch(component.displayName) {
                                 case "Motion":
                                     setComponentProperty(component, "Scale", thumbnailScale);
-                                    setComponentProperty(component, "Position", scaleClipCoordToSequence(sequence, thumbnailPosX, thumbnailPosY))
+                                    setComponentProperty(component, "Position", scaleClipCoordToSequence(sequence, thumbnailPosX, thumbnailPosY));
                                     continue;
                                 case "Opacity":
                                     setComponentProperty(component, "Opacity", thumbnailOpacity);
@@ -680,7 +682,7 @@ function createMusicMixVideoTimeline() {
                                     continue;
                             }
                         }
-                        $.writeln("Thumbnail " + (i + 1) + ": " + displayTitle);
+                        //$.writeln("Thumbnail " + (i + 1) + ": " + displayTitle);
                     } else {
                         throw new Error("Failed to insert thumbnail clip for '" + displayTitle + "'");
                     }

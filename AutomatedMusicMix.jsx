@@ -25,12 +25,12 @@ function createMusicMixVideoTimeline() {
     var sequenceName = "AutomatedMixtapeSequence1080";
     var framerate = 29.97;
     var backgroundName = "background.jpg";
-    var backgrounWidth = 4000;   // *** MUST CHANGE ***
-    var backgroundHeight = 2252; // *** MUST CHANGE ***
+    var backgrounWidth = 5881;   // *** MUST CHANGE ***
+    var backgroundHeight = 3921; // *** MUST CHANGE ***
     var thumbnailOpacity = 99;
     var thumbnailScale = 12;
-    var thumbnailPosX = 200;
-    var thumbnailPosY = 200;
+    var thumbnailPosX = 200;  // LEFT:200 RIGHT:1080
+    var thumbnailPosY = 200;  // TOP:200 BOTTOM:1080
     var thumbnailTransitionDuration = '00;00;00;29';
     var introTransitionDuration = '00;00;07;00';
     var outroTransitionDuration = '00;00;03;00';

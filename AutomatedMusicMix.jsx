@@ -28,9 +28,9 @@ function createMusicMixVideoTimeline() {
     var backgrounWidth = 5881;   // *** MUST CHANGE ***
     var backgroundHeight = 3921; // *** MUST CHANGE ***
     var thumbnailOpacity = 99;
-    var thumbnailScale = 12;
-    var thumbnailPosX = 200;  // LEFT:200 RIGHT:1080
-    var thumbnailPosY = 200;  // TOP:200 BOTTOM:1080
+    var thumbnailScale = 12;  // 16,9:12 3,2:13
+    var thumbnailPosX = 200;  // LEFT:200 RIGHT:W-200
+    var thumbnailPosY = 1080;  // TOP:200 BOTTOM:H-200
     var thumbnailTransitionDuration = '00;00;00;29';
     var introTransitionDuration = '00;00;07;00';
     var outroTransitionDuration = '00;00;03;00';
@@ -725,7 +725,7 @@ function createMusicMixVideoTimeline() {
         qeVideoTrack3.getItemAt(qeVideoTrack3.numItems - 1).addTransition(filmDissolve, true, outroTransitionDuration);
 
         // --- 9. Final Sequence Adjustments ---
-        $.writeln("8. Final Sequence Adjustments");
+        $.writeln("9. Final Sequence Adjustments");
 
         // Set the length of the sequence/video to match the totalAudioDurationSeconds + 10 seconds
         var finalSequenceDuration = new Time();
@@ -733,7 +733,7 @@ function createMusicMixVideoTimeline() {
         sequence.setOutPoint(finalSequenceDuration); // Set the sequence's out point
 
         // --- 10. Tracklist Printout Helper ---
-        $.writeln("\n9. YouTube Tracklist Timestamps:");
+        $.writeln("\n10. YouTube Tracklist Timestamps:");
         for (var i = 0; i < tracklist.length; i++) {
             var entry = tracklist[i];
             var totalSeconds = Math.floor(entry.startTime.seconds);
@@ -743,12 +743,13 @@ function createMusicMixVideoTimeline() {
             $.writeln(formattedTime + " - " + entry.title);
         }
 
-
+        $.writeln("\nFinished\n")
         alert("Music Mix Sequence '" + sequenceName + "' created successfully!");
 
     } catch (e) {
         alert("An unhandled error occurred: " + e.message + " on line " + e.line);
     } finally {
+        $write
         app.disableQE(); // Disable Quality Editor
         app.project.autoSave = true; // Re-enable auto-save
     }
